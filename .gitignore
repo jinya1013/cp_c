@@ -1,0 +1,11 @@
+.mypy_cache/
+cifar-10-batches-py/
+cifar-100-python/
+data/
+imgs/
+logs/
+results/
+src/__pycache__/
+.python-version
+cifar-10-python.tar.gz
+cifar-100-python.tar.gz
