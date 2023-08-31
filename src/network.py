@@ -5,26 +5,28 @@ import torch.nn.functional as F
 
 import copy
 
+from typing import Callable, List, Optional, Tuple, Union
+
 
 class NonAffineBN(nn.BatchNorm2d):
-    def __init__(self, dim):
+    def __init__(self, dim: int):
         super(NonAffineBN, self).__init__(dim, affine=False)
 
 
 class AffineBN(nn.BatchNorm2d):
-    def __init__(self, dim):
+    def __init__(self, dim: int):
         super(AffineBN, self).__init__(dim, affine=True)
 
 
 class NonAffineNoStatsBN(nn.BatchNorm2d):
-    def __init__(self, dim):
+    def __init__(self, dim: int):
         super(NonAffineNoStatsBN, self).__init__(
             dim, affine=False, track_running_stats=False
         )
 
 
 class MultitaskBN(nn.Module):
-    def __init__(self, dim, num_tasks, affine=True):
+    def __init__(self, dim: int, num_tasks: int, affine=True):
         super(MultitaskBN, self).__init__()
         if affine:
             self.bns = nn.ModuleList([AffineBN(dim) for _ in range(num_tasks)])
@@ -48,18 +50,18 @@ def _masks_init(m):
 
 
 class LambdaLayer(nn.Module):
-    def __init__(self, lambd):
+    def __init__(self, lambd: Callable[[torch.Tensor], torch.Tensor]):
         super(LambdaLayer, self).__init__()
         self.lambd = lambd
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.lambd(x)
 
 
 class BasicBlock(nn.Module):
     expansion = 1
 
-    def __init__(self, in_planes, planes, args, device, stride=1, option="B"):
+    def __init__(self, in_planes: int, planes: int, args, device: str, stride: int=1, option: str="B"):
         super(BasicBlock, self).__init__()
         self.conv1 = nn.Conv2d(
             in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False

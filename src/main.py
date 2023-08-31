@@ -14,8 +14,6 @@ from data import (
     create_labels,
     task_construction,
     get_loaders,
-    create_svhn_dataloader,
-    create_svhn_dataset,
 )
 from network import init_model, resnet_total_params_mask, resnet_total_params
 from train import set_task, accuracy, train, reset_trainable_param

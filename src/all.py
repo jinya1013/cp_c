@@ -6,7 +6,6 @@ import torchvision  # type: ignore
 
 mean, std = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
 
-
 def load_dataset(dataset_name):
     transforms_train = torchvision.transforms.Compose(
         [

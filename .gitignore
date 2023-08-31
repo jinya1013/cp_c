@@ -9,3 +9,4 @@ src/__pycache__/
 .python-version
 cifar-10-python.tar.gz
 cifar-100-python.tar.gz
+mypy.ini

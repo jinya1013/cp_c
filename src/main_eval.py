@@ -13,15 +13,9 @@ from data import (
     std,
     create_labels,
     task_construction,
-    get_loaders,
-    create_svhn_dataloader,
-    create_svhn_dataset,
 )
 from network import init_model, resnet_total_params_mask, resnet_total_params_mask_union
-from train import set_task, accuracy, train
-from pruning import iterative_pruning
-from eval import eval, backward_transfer
-from energy_finetuning import finetune
+from train import set_task
 
 
 def calib_energy(net, valid_loader, task_id, device):
